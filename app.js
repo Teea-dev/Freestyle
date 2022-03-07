@@ -36,33 +36,35 @@ function showTemperature(response) {
   document.querySelector("#place").innerHTML = response.data.name;
 }
 
-function password(event) {
-  event.preventDefault();
-  let input = document.querySelector("#search").value;
-  let place = document.querySelector("#place");
-  let apiKey = `9941e27eb40543810ee2a95e3ea433af`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=${apiKey}&&units=metric`;
+function search(city) {
+let apiKey = `9941e27eb40543810ee2a95e3ea433af`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&&units=metric`;
   axios.get(apiUrl).then(showTemperature);
 }
+
+
+search("Abuja");
+
+function password(event) {
+  event.preventDefault();
+  let city = document.querySelector("#search").value;
+  search(city);
 let signUp = document.querySelector("#form");
 signUp.addEventListener("submit", password);
 
-
+ }
 
 
 function searchLocation(position){
   let apiKey = `9941e27eb40543810ee2a95e3ea433af`;
-
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&&units=metric`;
   axios.get(apiUrl).then(showTemperature);
 }
 function locationTemperature(event) {
   event.preventDefault();
-
- 
   navigator.geolocation.getCurrentPosition(searchLocation);
-
 }
 
 let myLocation = document.querySelector("#clickButton");
 myLocation.addEventListener("click", locationTemperature);
+
