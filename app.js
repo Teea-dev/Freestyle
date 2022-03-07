@@ -47,18 +47,22 @@ function password(event) {
 let signUp = document.querySelector("#form");
 signUp.addEventListener("submit", password);
 
-function locationTemperature(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
 
-  console.log(lat);
-  console.log(lon);
 
+
+function searchLocation(position){
   let apiKey = `9941e27eb40543810ee2a95e3ea433af`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&&units=metric`;
-  axios.get(apiUrl).then(locationTemperature);
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&&units=metric`;
+  axios.get(apiUrl).then(showTemperature);
+}
+function locationTemperature(event) {
+  event.preventDefault();
+
+ 
+  navigator.geolocation.getCurrentPosition(searchLocation);
+
 }
 
 let myLocation = document.querySelector("#clickButton");
 myLocation.addEventListener("click", locationTemperature);
-navigator.geolocation.getCurrentPosition(locationTemperature);
