@@ -49,7 +49,7 @@ function password(event) {
   searchCity(city);
 
 }
-debugger
+
  function searchLocation(position) {
    let apiKey = `9941e27eb40543810ee2a95e3ea433af`;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&&units=metric`;
