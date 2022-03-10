@@ -1,0 +1,52 @@
+ body{
+    border: 1px solid white;
+    background-color: rgb(74, 74, 223);
+    margin: 25px 250px;
+    border-radius: 15px;
+}
+h1{
+  text-align: center;
+  font-family: lobster;
+  color: white;
+}
+h2{
+  font-size: small;
+}
+.note{
+  font-weight: 100;
+}
+   .today{
+     display: block;
+     margin: 0 auto;
+     width: 35%;
+     
+      }
+   .days{
+    display: block;
+    margin: 10px auto;
+   }
+   .card-header{
+     background-color:  rgb(110, 110, 236);
+     color: white;
+   }
+   #search , #search-btn{
+     position: relative;
+     top: 50px;
+   }
+   .day{
+     font-family: lobster;
+   }
+   .button{
+     position: relative;
+     top: 30px;
+     left: 700px;
+     padding: 10px 5px;
+     background: hsl(211, 10%, 45%);
+     color: white;
+     border-radius: 15px;
+     transition: all 200ms ease-in-out;
+   }
+   .button:hover{
+     cursor: pointer;
+     
+   }
