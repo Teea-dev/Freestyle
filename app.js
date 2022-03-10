@@ -33,7 +33,7 @@ function formatDay(timestamp) {
 
 
 function showTemperature(response) {
-  console.log(response.data);
+  
   let temperature = Math.round(response.data.main.temp);
   let temp = document.querySelector("#temp");
   temp.innerHTML = `${temperature} <sup>°c</sup>`;
