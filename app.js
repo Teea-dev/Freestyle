@@ -18,8 +18,10 @@ if (minute < 10) {
   minute = `0${minute}`;
 }
 let h3 = document.querySelector("h3");
-h3.innerHTML = ` ${day} ${hour}:${minute} `;
-  
+h3.innerHTML = ` ${day} ${hour}:${minute} `
+
+
+
 function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
   let temp = document.querySelector("#temp");
@@ -34,8 +36,15 @@ function showTemperature(response) {
   let note = document.querySelector("#note");
   note.innerHTML = `${notice}`;
   document.querySelector("#place").innerHTML = response.data.name;
-}
+  let icon = document.querySelector("#weatherIcon");
 
+  icon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+    icon.setAttribute("alt", response.data.weather[0].description);
+    
+}
 
 function searchCity(city) {
   let apiKey = `9941e27eb40543810ee2a95e3ea433af`;
@@ -47,11 +56,10 @@ function password(event) {
   event.preventDefault();
   let city = document.querySelector("#search").value;
   searchCity(city);
-
 }
 
- function searchLocation(position) {
-   let apiKey = `9941e27eb40543810ee2a95e3ea433af`;
+function searchLocation(position) {
+  let apiKey = `9941e27eb40543810ee2a95e3ea433af`;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&&units=metric`;
   axios.get(apiUrl).then(showTemperature);
 }
@@ -66,16 +74,4 @@ myLocation.addEventListener("click", locationTemperature);
 let signUp = document.querySelector("#form");
 signUp.addEventListener("submit", password);
 
-  searchCity("Abuja");
-
-
-
-
-
-
-
-
-
-
-
-
+searchCity("Abuja");
