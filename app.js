@@ -1,28 +1,39 @@
-let now = new Date();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tueday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
-let hour = now.getHours();
-if (hour < 10) {
-  hour = `0${hour}`;
-}
-let minute = now.getMinutes();
-if (minute < 10) {
-  minute = `0${minute}`;
-}
-let h3 = document.querySelector("h3");
-h3.innerHTML = ` ${day} ${hour}:${minute} `
+function formatDate(timestamp) {
 
+  let now = new Date(timestamp);
+  let hour = now.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+  let minute = now.getMinutes();
+  if (minute < 10) {
+    minute = `0${minute}`;
+  }
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tueday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  
+  let day = days[now.getDay()];
+  return ` ${day} ${hour}:${minute} `;
+}
+
+function formatDay(timestamp) {
+  let now = new Date(timestamp * 1000);
+  let day = now.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
 
 
 function showTemperature(response) {
+  console.log(response.data);
   let temperature = Math.round(response.data.main.temp);
   let temp = document.querySelector("#temp");
   temp.innerHTML = `${temperature} <sup>°c</sup>`;
@@ -32,6 +43,8 @@ function showTemperature(response) {
   let windSpeed = Math.round(response.data.wind.speed);
   let wind = document.querySelector("#wind");
   wind.innerHTML = `${windSpeed}`;
+  let date = document.querySelector("#time");
+  date.innerHTML = formatDate(response.data.dt * 1000);
   let notice = response.data.weather[0].description;
   let note = document.querySelector("#note");
   note.innerHTML = `${notice}`;
