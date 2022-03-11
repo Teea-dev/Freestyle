@@ -1,5 +1,4 @@
 function formatDate(timestamp) {
-
   let now = new Date(timestamp);
   let hour = now.getHours();
   if (hour < 10) {
@@ -18,7 +17,7 @@ function formatDate(timestamp) {
     "Friday",
     "Saturday",
   ];
-  
+
   let day = days[now.getDay()];
   return ` ${day} ${hour}:${minute} `;
 }
@@ -31,9 +30,7 @@ function formatDay(timestamp) {
   return days[day];
 }
 
-
-function showTemperature(response) {
-  
+function showTemperature(response){
   let temperature = Math.round(response.data.main.temp);
   let temp = document.querySelector("#temp");
   temp.innerHTML = `${temperature} <sup>°c</sup>`;
@@ -54,9 +51,8 @@ function showTemperature(response) {
   icon.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-    );
-    icon.setAttribute("alt", response.data.weather[0].description);
-    
+  );
+  icon.setAttribute("alt", response.data.weather[0].description);
 }
 
 function searchCity(city) {
